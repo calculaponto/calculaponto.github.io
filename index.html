@@ -20,6 +20,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+/* Pixel da Meta: mede visitas, quem viu a oferta, quem usou o simulador e quem clicou em comprar.
+   Trocar SEU_PIXEL_ID pelo número do Pixel (Gerenciador de Eventos). Enquanto não trocar, nada é carregado. */
+window.CP_PIXEL = '2172807743356783';
+if (/^\d{10,20}$/.test(window.CP_PIXEL)) {
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', window.CP_PIXEL);
+  fbq('track', 'PageView');
+}
+</script>
 <style>
 :root{
   --verde:#16a34a; --verde-esc:#0f7a37; --verde-claro:#e8f7ee;
@@ -518,6 +532,7 @@ footer strong{color:#fff}
     <p><strong>Calcula Ponto</strong>, planilha para cálculo de jornada e fechamento de folha.</p>
     <p>A compra é processada e entregue pela Hotmart. Dúvidas depois da compra: use o contato com o produtor na sua área de compras da Hotmart.</p>
     <p>Ferramenta de apoio: não é sistema de registro de ponto homologado e não substitui a orientação de contador ou advogado trabalhista.</p>
+    <p>Este site usa o Pixel da Meta para medir os resultados dos anúncios (visitas e cliques nos botões de compra). Ele não coleta nome, e-mail nem dados de pagamento; esses ficam só na Hotmart. Você pode limitar isso nas configurações de anúncios do Facebook e do Instagram.</p>
     <p>Microsoft e Excel são marcas registradas da Microsoft Corporation. Este produto não é afiliado nem endossado pela Microsoft.</p>
     <p>© <span id="ano">2026</span> Calcula Ponto. Todos os direitos reservados.</p>
   </div>
@@ -665,6 +680,49 @@ footer strong{color:#fff}
     });
   });
   calcular();
+
+  /* ---------- Medição (Pixel da Meta) ---------- */
+  function medir(tipo, evento, dados){
+    window.CP_EVENTOS = window.CP_EVENTOS || [];
+    window.CP_EVENTOS.push(evento);           // ajuda a conferir no teste
+    if (window.fbq) fbq(tipo, evento, dados || {});
+  }
+  var origem = (/[?&]utm_content=([^&#]*)/.exec(location.search) || [])[1] || 'sem-utm';
+
+  /* Clique em comprar: cada botão é identificado pelo lugar da página */
+  document.querySelectorAll('.js-checkout').forEach(function(a){
+    var lugar = a.closest('header') ? 'cabecalho'
+              : a.closest('.hero') ? 'topo'
+              : a.closest('#oferta') ? 'oferta'
+              : a.closest('#barraCel') ? 'barra-celular'
+              : a.closest('#faq') ? 'perguntas'
+              : 'outro';
+    a.addEventListener('click', function(){
+      medir('track', 'InitiateCheckout', {value: 49.90, currency: 'BRL', content_name: 'Calcula Ponto', botao: lugar, anuncio: origem});
+    });
+  });
+
+  /* Viu a seção da oferta (rolou até o preço) */
+  var viuOferta = false;
+  function checaOferta(){
+    if (viuOferta) return;
+    var r = oferta.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.8) {
+      viuOferta = true;
+      medir('track', 'ViewContent', {value: 49.90, currency: 'BRL', content_name: 'Oferta', anuncio: origem});
+    }
+  }
+  window.addEventListener('scroll', checaOferta, {passive:true});
+  checaOferta();
+
+  /* Mexeu no simulador (uma vez por visita) */
+  var usou = false;
+  function usouSimulador(){
+    if (usou) return; usou = true;
+    medir('trackCustom', 'UsouSimulador', {anuncio: origem});
+  }
+  ['e1','s1','e2','s2','tipo','semana'].forEach(function(id){ $(id).addEventListener('change', usouSimulador); });
+  document.querySelectorAll('[data-ex]').forEach(function(b){ b.addEventListener('click', usouSimulador); });
 })();
 </script>
 </body>
