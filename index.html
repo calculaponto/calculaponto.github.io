@@ -468,6 +468,38 @@ footer{background:#050b09;border-top:1px solid #15221e}
 .rodape{border-bottom-color:rgba(255,255,255,.08)}
 .barra-cel{background:#0f1a17;border-top-color:#23352f;box-shadow:0 -10px 24px -8px rgba(0,0,0,.8)}
 .barra-cel .p{color:#f2f8f5}
+
+/* Card de destaque: mudança de 44 para 42 horas (chama atenção antes do simulador) */
+.alerta-42{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;margin:0 auto 32px;padding:28px 30px;border-radius:20px;
+  background:radial-gradient(600px 220px at 0% 0%,rgba(52,208,112,.20),transparent 70%),linear-gradient(180deg,#183026 0%,#11221c 100%);
+  border:1.5px solid rgba(74,222,128,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 0 0 6px rgba(34,197,94,.07),0 22px 50px -18px rgba(22,163,74,.45);overflow:hidden}
+.alerta-42::before{content:"";position:absolute;inset:-1px;border-radius:20px;pointer-events:none;background:linear-gradient(110deg,transparent 30%,rgba(166,255,203,.16) 45%,transparent 60%);background-size:250% 100%;animation:a42Brilho 4.5s ease-in-out infinite}
+@keyframes a42Brilho{0%,35%{background-position:120% 0}70%,100%{background-position:-60% 0}}
+.a42-icone{width:68px;height:68px;border-radius:18px;display:grid;place-items:center;background:var(--g-verde);box-shadow:var(--relevo),0 10px 24px -6px rgba(22,163,74,.6)}
+.a42-icone svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 0 rgba(0,0,0,.2))}
+.a42-selo{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1a1200;background:linear-gradient(180deg,#fff1a8,#fcd34d);border:1px solid #f0c53a;border-radius:999px;padding:5px 11px;margin-bottom:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 3px 10px -3px rgba(252,211,77,.5)}
+.a42-selo::before{content:"";width:7px;height:7px;border-radius:50%;background:#b45309;animation:cpPulsa 1.6s ease-in-out infinite}
+.alerta-42 h3{font-size:clamp(1.2rem,2.2vw,1.5rem);color:#f2f8f5;margin:0 0 8px;text-wrap:balance}
+.alerta-42 p{color:#b9cbc5;margin:0 0 16px;max-width:620px}
+.a42-compara{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.a42-compara > div{background:rgba(255,255,255,.05);border:1px solid #2a3f38;border-radius:12px;padding:8px 14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.a42-compara small{display:block;font-size:.72rem;font-weight:600;color:#9db0aa;text-transform:uppercase;letter-spacing:.05em}
+.a42-compara strong{display:block;font-size:1.35rem;font-weight:800;color:#eef5f2;font-variant-numeric:tabular-nums}
+.a42-compara .a42-dez{background:var(--g-verde);border-color:transparent;box-shadow:var(--relevo),0 8px 18px -6px rgba(22,163,74,.6)}
+.a42-compara .a42-dez small{color:rgba(255,255,255,.85)}
+.a42-compara .a42-dez strong{color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.2)}
+.a42-seta{font-size:1.4rem;color:#6ee7a0;font-weight:700}
+.a42-btn{white-space:nowrap}
+/* Resultado pisca quando o botão do destaque é usado */
+.kpi.pisca{animation:kpiPisca 1.6s ease-out}
+@keyframes kpiPisca{0%{box-shadow:0 0 0 0 rgba(110,231,160,.9)}60%{box-shadow:0 0 0 14px rgba(110,231,160,0)}100%{box-shadow:var(--relevo)}}
+@media (max-width:900px){
+  .alerta-42{grid-template-columns:1fr;text-align:center;justify-items:center;padding:26px 20px}
+  .alerta-42 p{margin-left:auto;margin-right:auto}
+  .a42-compara{justify-content:center}
+}
+@media (max-width:620px){.a42-btn{width:100%;white-space:normal}}
+@media (prefers-reduced-motion:reduce){.alerta-42::before,.a42-selo::before{animation:none}}
 </style>
 </head>
 <body>
@@ -659,7 +691,23 @@ footer{background:#050b09;border-top:1px solid #15221e}
     <div class="cab">
       <span class="eyebrow">Teste agora</span>
       <h2>Mude os horários e veja o cálculo</h2>
-      <p class="lead">Este teste usa as mesmas regras da planilha: jornada de 44, 42 ou 40 h por semana em 5 dias, tolerância de 10 minutos por dia e adicional noturno das 22h às 5h.</p>
+      <p class="lead">Digite os horários de um dia e veja o resultado com as mesmas regras da planilha.</p>
+    </div>
+
+    <!-- Destaque: mudança de 44 para 42 horas -->
+    <div class="alerta-42">
+      <div class="a42-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/><path d="M12 14v3M12 14h.01"/></svg></div>
+      <div class="a42-texto">
+        <span class="a42-selo">Muda em dezembro</span>
+        <h3>Já sabe como a mudança para 42 horas vai mexer na sua folha?</h3>
+        <p>Em dezembro, a jornada cai de 44 para 42 horas por semana, sem reduzir salário. O mesmo dia de trabalho que hoje dá 12 minutos de hora extra passa a dar 36. A conta de hora extra de cada funcionário muda junto.</p>
+        <div class="a42-compara">
+          <div><small>Hoje · 44 h</small><strong>+12 min</strong></div>
+          <span class="a42-seta" aria-hidden="true">→</span>
+          <div class="a42-dez"><small>Dezembro · 42 h</small><strong>+36 min</strong></div>
+        </div>
+      </div>
+      <button type="button" class="btn a42-btn" id="ver42">Ver a diferença no simulador</button>
     </div>
 
     <div class="sim">
@@ -1013,6 +1061,19 @@ footer{background:#050b09;border-top:1px solid #15221e}
     });
   });
   calcular();
+
+  /* Botão do destaque das 42 h: preenche um dia comum, troca a jornada para 42 h
+     e leva até o resultado, que pisca. Conta como "usou o simulador". */
+  var ver42 = $('ver42');
+  if (ver42) ver42.addEventListener('click', function(){
+    $('e1').value = '07:30'; $('s1').value = '12:00'; $('e2').value = '13:00'; $('s2').value = '17:30'; $('tipo').value = 'util';
+    $('semana').value = '42';
+    $('semana').dispatchEvent(new Event('change'));
+    var alvo = document.querySelector('.sim-res');
+    alvo.scrollIntoView({behavior:'smooth', block:'center'});
+    var k = $('rSaldo').parentNode;
+    k.classList.remove('pisca'); void k.offsetWidth; k.classList.add('pisca');
+  });
 
   /* Exemplo escolhido fica marcado; mexer num campo desmarca */
   var exemplos = document.querySelectorAll('[data-ex]');
