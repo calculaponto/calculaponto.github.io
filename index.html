@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Calcula Ponto | Planilha de horas extras, noturno e folha em Excel</title>
 <meta name="description" content="Calcula Ponto, planilha de controle de ponto em Excel: calcula horas extras, adicional noturno, feriados, faltas, INSS, IRRF e FGTS, além de 13º salário e férias, e entrega o resumo da folha e a folha individual para assinar. Até 10 funcionários. R$ 49,90, pagamento único.">
-<meta name="theme-color" content="#0f3b35">
+<meta name="theme-color" content="#0b1412"><meta name="color-scheme" content="dark">
 <meta property="og:type" content="product">
 <meta property="og:title" content="Calcula Ponto: feche a folha do mês sem calculadora">
 <meta property="og:description" content="Horas extras, adicional noturno, feriados, INSS, IRRF, FGTS, 13º e férias calculados sozinhos. Arquivo Excel, sem mensalidade. R$ 49,90, pagamento único.">
@@ -16,7 +16,7 @@
 <meta property="og:image:height" content="568">
 <meta property="og:image:alt" content="Print real do Painel da planilha Calcula Ponto, com dados fictícios">
 <link rel="canonical" href="https://calculaponto.github.io/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316a34a'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='white' stroke-width='5'/%3E%3Cpath d='M32 21v12l8 5' fill='none' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23102b23'/%3E%3Cpath d='M45.4 18.6A19 19 0 1 0 45.4 45.4' fill='none' stroke='%2334d070' stroke-width='8' stroke-linecap='round'/%3E%3Ccircle cx='51' cy='32' r='4' fill='%236ff5a5'/%3E%3Cpath d='M32 32V19.5M32 32h8.5' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,7 +24,8 @@
 /* Pixel da Meta: mede visitas, quem viu a oferta, quem usou o simulador e quem clicou em comprar.
    Trocar SEU_PIXEL_ID pelo número do Pixel (Gerenciador de Eventos). Enquanto não trocar, nada é carregado. */
 window.CP_PIXEL = '2172807743356783';
-if (/^\d{10,20}$/.test(window.CP_PIXEL)) {
+/* Só mede no endereço oficial: testes no computador não entram nos números. */
+if (/^\d{10,20}$/.test(window.CP_PIXEL) && location.hostname === 'calculaponto.github.io') {
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -38,161 +39,220 @@ if (/^\d{10,20}$/.test(window.CP_PIXEL)) {
 :root{
   --verde:#16a34a; --verde-esc:#0f7a37; --verde-claro:#e8f7ee;
   --tinta:#0f3b35; --tinta-2:#14524a;
-  --texto:#1c2b29; --suave:#566663; --linha:#dde5e3; --fundo:#f6f8f7; --branco:#ffffff;
+  --texto:#1c2b29; --suave:#566663; --linha:#dde5e3; --fundo:#f5f7f6; --branco:#ffffff;
   --amarelo:#fff6cc; --amarelo-borda:#e9d77a;
-  --raio:14px; --sombra:0 10px 30px rgba(15,59,53,.10);
+  --raio:16px; --sombra:0 1px 2px rgba(15,59,53,.06),0 8px 24px rgba(15,59,53,.08);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--texto);background:var(--branco);line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%}
 a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-.sec{padding:84px 0}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+
+/* Seções: cada uma com fundo próprio e uma linha separando da próxima */
+.sec{padding:96px 0;border-top:1px solid var(--linha)}
 .sec.cinza{background:var(--fundo)}
-section[id]{scroll-margin-top:64px}
-.eyebrow{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--verde-esc);background:var(--verde-claro);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+section[id]{scroll-margin-top:72px}
+.cab{text-align:center;max-width:720px;margin:0 auto 48px}
+.cab .lead{margin:0 auto}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--verde-esc);background:var(--verde-claro);padding:6px 14px;border-radius:999px;margin-bottom:16px}
 h1,h2,h3{line-height:1.2;margin:0 0 14px;color:var(--tinta)}
-h1{font-size:clamp(2rem,4.6vw,3.25rem);font-weight:800;letter-spacing:-.02em}
-h2{font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:800;letter-spacing:-.015em}
+h1{font-size:clamp(2rem,4.4vw,3.1rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.65rem,3.1vw,2.35rem);font-weight:800;letter-spacing:-.015em}
 h3{font-size:1.1rem;font-weight:700}
+h1,h2,.lead{text-wrap:balance}
 p{margin:0 0 14px}
-.lead{font-size:1.15rem;color:var(--suave);max-width:640px}
-.centro{text-align:center}
-.centro .lead{margin-left:auto;margin-right:auto}
+.lead{font-size:1.12rem;color:var(--suave);max-width:640px}
 
 /* Botões */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--verde);color:#fff;text-decoration:none;font-weight:700;font-size:1.08rem;padding:17px 30px;border-radius:12px;box-shadow:0 8px 20px rgba(22,163,74,.30);transition:transform .15s ease,background .15s ease,box-shadow .15s ease;border:0;cursor:pointer}
-.btn:hover{background:var(--verde-esc);transform:translateY(-2px);box-shadow:0 12px 26px rgba(22,163,74,.35)}
-.btn:focus-visible{outline:3px solid #0f3b35;outline-offset:3px}
-.btn.grande{font-size:1.2rem;padding:20px 36px;width:100%;max-width:440px}
-.btn-sec{display:inline-flex;align-items:center;gap:8px;color:var(--tinta);font-weight:600;text-decoration:none;padding:16px 18px}
-.btn-sec:hover{text-decoration:underline}
-.micro{font-size:.88rem;color:var(--suave);margin-top:12px}
+/* Botões no estilo "componente": cheio com seta (principal), contorno com seta (secundário) e texto com seta.
+   O principal é "elevado": brilho em cima, borda escura embaixo e sombra verde. */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(180deg,#1fb456 0%,#16a34a 100%);color:#fff;text-decoration:none;font-weight:600;font-size:1rem;letter-spacing:.005em;padding:15px 24px;border-radius:10px;border:1px solid #128a3e;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 1px 2px rgba(15,59,53,.18),0 8px 18px -4px rgba(22,163,74,.45);transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;cursor:pointer;text-align:center}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.04);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 2px 4px rgba(15,59,53,.18),0 14px 26px -6px rgba(22,163,74,.55)}
+.btn:active{transform:translateY(0);box-shadow:inset 0 2px 4px rgba(0,0,0,.18)}
+.btn::after,.btn-sec::after,.btn-txt::after{content:"";flex:none;width:16px;height:16px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .15s ease}
+.btn:hover::after,.btn-sec:hover::after,.btn-txt:hover::after{transform:translateX(3px)}
+.btn:focus-visible,.btn-sec:focus-visible,.btn-txt:focus-visible{outline:3px solid #0f3b35;outline-offset:3px}
+.btn.grande{font-size:1.1rem;padding:18px 30px}
+.btn-sec{display:inline-flex;align-items:center;justify-content:center;gap:8px;color:var(--verde-esc);font-weight:600;font-size:1rem;text-decoration:none;padding:15px 22px;border:1px solid #cfe0db;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,59,53,.06),0 4px 12px -4px rgba(15,59,53,.10);transition:border-color .15s ease,box-shadow .15s ease}
+.btn-sec:hover{border-color:var(--verde);box-shadow:0 1px 2px rgba(15,59,53,.06),0 8px 18px -6px rgba(15,59,53,.18)}
+.btn-txt{display:inline-flex;align-items:center;gap:6px;color:var(--verde-esc);font-weight:600;text-decoration:none}
+.micro{font-size:.88rem;color:var(--suave);margin-top:14px}
 
 /* Topo */
-.topo{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--linha)}
-.topo .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.marca{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--tinta);text-decoration:none;font-size:1.05rem}
-.marca svg{flex:none}
-.topo .btn{padding:10px 18px;font-size:.95rem;box-shadow:none}
+/* Cabeçalho: faixa branca separada do resto por linha + sombra e uma faixa verde fina no alto */
+.topo{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);backdrop-filter:saturate(1.4) blur(8px);border-top:3px solid var(--verde);border-bottom:1px solid #d3e0dc;box-shadow:0 6px 24px -10px rgba(15,59,53,.22)}
+.topo .wrap{display:flex;align-items:center;gap:20px;height:74px}
+.marca{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--tinta);text-decoration:none;font-size:1.15rem;letter-spacing:-.01em;flex:none}
+/* Logo de app: sombra + brilho verde, e uma animação curta ao abrir a página
+   (o "C" se desenha, os ponteiros giram até a hora certa e o ponto pisca devagar). */
+.logo-app{flex:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45)) drop-shadow(0 0 14px rgba(52,208,112,.35));transition:transform .2s ease,filter .2s ease}
+.marca:hover .logo-app{transform:translateY(-1px) scale(1.04);filter:drop-shadow(0 8px 14px rgba(0,0,0,.5)) drop-shadow(0 0 20px rgba(52,208,112,.55))}
+.cp-c{stroke-dasharray:90;stroke-dashoffset:90;animation:cpDesenha 1.1s .25s cubic-bezier(.6,0,.2,1) forwards}
+.cp-ponteiros{transform-box:view-box;transform-origin:32px 32px;animation:cpGira 1.4s .25s cubic-bezier(.3,1.35,.5,1) both}
+.cp-ponto{animation:cpAparece .4s 1.2s ease-out both,cpPulsa 2.8s 1.8s ease-in-out infinite}
+@keyframes cpDesenha{to{stroke-dashoffset:0}}
+@keyframes cpGira{from{transform:rotate(-300deg)}to{transform:rotate(0)}}
+@keyframes cpAparece{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes cpPulsa{0%,100%{opacity:1}50%{opacity:.4}}
+.cp-ponto{transform-box:fill-box;transform-origin:center}
+@media (prefers-reduced-motion:reduce){.cp-c{stroke-dashoffset:0;animation:none}.cp-ponteiros,.cp-ponto{animation:none}}
+.nome-marca{font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.marca .nome-marca small{margin-top:4px;line-height:1.2}
+.hero-grade > *{min-width:0}
+.app-selo{max-width:100%;text-align:left}
+.nome-marca b{color:#34d070;font-weight:800}
+/* Selo de app no topo da página: ícone grande + nome, como página de aplicativo */
+.app-selo{display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;padding:8px 18px 8px 8px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 30px -12px rgba(0,0,0,.6)}
+.app-selo svg{flex:none;filter:drop-shadow(0 8px 14px rgba(0,0,0,.5)) drop-shadow(0 0 22px rgba(52,208,112,.40))}
+.app-selo strong{display:block;font-size:1.05rem;color:var(--tinta);letter-spacing:-.01em}
+.app-selo strong b{color:#34d070}
+.app-selo span{display:block;font-size:.8rem;color:var(--suave);font-weight:500}
+.marca small{display:block;font-size:.72rem;font-weight:600;color:var(--suave);letter-spacing:.02em;margin-top:-2px}
+.divisor{width:1px;height:34px;background:var(--linha);flex:none}
+/* Menu como grupo de botões (segmentado) */
+.menu{display:flex;margin:0 auto;border:1px solid var(--linha);border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(15,59,53,.06);overflow:hidden}
+.menu a{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;white-space:nowrap;font-size:.88rem;font-weight:600;text-decoration:none;color:var(--tinta-2);transition:background .15s ease,color .15s ease}
+.menu a + a{border-left:1px solid var(--linha)}
+.menu a:hover{background:var(--verde-claro);color:var(--verde-esc)}
+.menu svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+.topo .btn{padding:11px 18px;font-size:.92rem;flex:none;white-space:nowrap}
 
 /* Hero */
-.hero{padding:64px 0 76px;background:linear-gradient(180deg,#f2faf5 0%,#fff 100%)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
-.checks{list-style:none;padding:0;margin:22px 0 28px;display:grid;gap:10px}
-.checks li{display:flex;gap:10px;align-items:flex-start;font-weight:500}
-.checks li::before{content:"";flex:none;width:22px;height:22px;margin-top:2px;border-radius:50%;background:var(--verde) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
-.selos{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:.9rem;color:var(--suave)}
-.selos span{display:inline-flex;align-items:center;gap:6px}
-.selos span::before{content:"•";color:var(--verde);font-weight:900}
+.hero{padding:72px 0 64px;background:linear-gradient(180deg,#eef8f2 0%,#fff 100%)}
+.hero-grade{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+.preco-hero{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 10px;margin:4px 0 22px;font-weight:600;color:var(--suave)}
+.preco-hero strong{color:var(--tinta);font-size:1.5rem;font-weight:800}
+.acoes{display:flex;flex-wrap:wrap;gap:12px}
+.selos{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.selos span{font-size:.85rem;font-weight:600;color:var(--tinta-2);background:#fff;border:1px solid var(--linha);border-radius:999px;padding:6px 12px}
+.destaques{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.destaque{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:24px 22px;text-align:center;box-shadow:var(--sombra)}
+.destaque .ico{margin:0 auto 12px}
+.destaque p{margin:0;font-weight:600;color:var(--tinta);font-size:.98rem}
 
-/* Barra de janela dos prints */
-.janela-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#f1f4f3;border-bottom:1px solid var(--linha);font-size:.8rem;color:var(--suave);font-weight:600}
-.janela-bar i{width:10px;height:10px;border-radius:50%;background:#d6dcda;display:inline-block}
-.janela-bar b{margin-left:8px;color:var(--tinta)}
-.rolagem{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* Faixa de confiança */
+.confianca{border-top:1px solid var(--linha);background:#fff}
+.confianca .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.confianca div{display:flex;align-items:center;justify-content:center;gap:10px;padding:22px 12px;font-weight:600;font-size:.92rem;color:var(--tinta);text-align:center}
+.confianca div + div{border-left:1px solid var(--linha)}
+.confianca svg{width:20px;height:20px;stroke:var(--verde-esc);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* Ícones */
+.ico{width:52px;height:52px;border-radius:14px;background:var(--verde-claro);display:grid;place-items:center}
+.ico svg{width:26px;height:26px;stroke:var(--verde-esc);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* Prints reais da planilha */
 .print{margin:0;background:#fff;border:1px solid var(--linha);border-radius:var(--raio);box-shadow:var(--sombra);overflow:hidden}
 .print img{display:block;width:100%;height:auto}
-.print figcaption{padding:10px 14px;font-size:.78rem;color:var(--suave);background:#fafbfb;border-top:1px solid var(--linha)}
-.prints{display:grid;gap:22px;margin-top:48px}
-.hero .checks{margin:22px 0 0}
-.dica-rolar{display:none}
-@media (max-width:620px){
-  .print img.largo{width:860px;max-width:none}
-  .dica-rolar{display:block;font-weight:600;color:var(--verde-esc)}
-}
+.print figcaption{padding:12px 16px;font-size:.82rem;color:var(--suave);background:#fafbfb;border-top:1px solid var(--linha)}
+.janela-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#f1f4f3;border-bottom:1px solid var(--linha);font-size:.8rem;color:var(--suave);font-weight:600}
+.janela-bar i{width:10px;height:10px;border-radius:50%;background:#d6dcda;display:inline-block}
+.janela-bar b{margin-left:8px;color:var(--tinta)}
+.previa{display:block;height:400px;overflow:hidden;position:relative}
+.previa img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.previa::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff)}
+.prints{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.ver-maior{display:inline-block;margin-top:6px;font-weight:700;color:var(--verde-esc);text-decoration:none}
+.ver-maior:hover{text-decoration:underline}
 
-/* Comparação */
-.duas{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
-.cartao{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:28px}
-.cartao.ruim{border-top:4px solid #c9d2d0}
-.cartao.bom{border-top:4px solid var(--verde);box-shadow:var(--sombra)}
-.cartao ul{margin:0;padding-left:20px}
-.cartao li{margin-bottom:8px}
-.cartao.ruim li{color:var(--suave)}
+/* Comparação e "para quem" */
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cartao{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:32px 30px;box-shadow:var(--sombra)}
+.cartao-cab{text-align:center;padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid var(--linha)}
+.cartao-cab .marcador{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;font-weight:800;font-size:1.2rem}
+.cartao.ruim .marcador{background:#eef1f0;color:#7d8a88}
+.cartao.bom{border:2px solid var(--verde)}
+.cartao.bom .marcador{background:var(--verde);color:#fff}
+.cartao-cab h3{margin:0}
+.lista{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.lista li{display:flex;gap:12px;align-items:flex-start}
+.lista li::before{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:800;margin-top:2px}
+.lista.sim-l li::before{content:"✓";background:var(--verde-claro);color:var(--verde-esc)}
+.lista.nao-l li::before{content:"✕";background:#eef1f0;color:#8a9694}
+.cartao.ruim .lista li{color:var(--suave)}
+.aviso{max-width:860px;margin:32px auto 0;background:#fffbea;border:1px solid #f1e3a1;border-radius:var(--raio);padding:20px 24px;font-size:.95rem;text-align:center}
+.aviso strong{color:#7a5d00}
 
 /* Simulador */
-.sim{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:36px;align-items:stretch}
-.sim-form{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:26px}
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.sim-form{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:28px;box-shadow:var(--sombra)}
+.sim-form h3,.sim-res h3{text-align:center;margin-bottom:20px}
 .campos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .campo label{display:block;font-size:.82rem;font-weight:600;color:var(--suave);margin-bottom:6px}
 .campo input,.campo select{width:100%;font:inherit;font-size:1.05rem;padding:11px 12px;border:1.5px solid var(--amarelo-borda);background:var(--amarelo);border-radius:10px;color:var(--texto)}
 .campo input:focus,.campo select:focus{outline:none;border-color:var(--verde);box-shadow:0 0 0 3px rgba(22,163,74,.18)}
-.campo.inteiro{grid-column:1/-1}
-.atalhos{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.atalhos button{font:inherit;font-size:.85rem;font-weight:600;padding:8px 12px;border-radius:999px;border:1px solid var(--linha);background:#fff;color:var(--tinta);cursor:pointer}
+.atalhos-tit{font-size:.82rem;font-weight:600;color:var(--suave);text-align:center;margin:22px 0 10px}
+.atalhos{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.atalhos button{font:inherit;font-size:.85rem;font-weight:600;padding:8px 13px;border-radius:999px;border:1px solid var(--linha);background:#fff;color:var(--tinta);cursor:pointer}
 .atalhos button:hover{border-color:var(--verde);color:var(--verde-esc)}
-.sim-res{background:var(--tinta);color:#fff;border-radius:var(--raio);padding:26px;display:flex;flex-direction:column}
+.sim-form .micro{text-align:center;margin:20px 0 0}
+.sim-res{background:var(--tinta);color:#fff;border-radius:var(--raio);padding:28px;box-shadow:var(--sombra);display:flex;flex-direction:column;justify-content:center}
 .sim-res h3{color:#fff}
-.kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 18px}
-.kpi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px}
-.kpi small{display:block;font-size:.75rem;opacity:.75;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.kpi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px;text-align:center}
+.kpi small{display:block;font-size:.72rem;opacity:.8;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
 .kpi strong{display:block;font-size:1.6rem;font-weight:800;font-variant-numeric:tabular-nums;margin-top:2px}
-.kpi.destaque{background:var(--verde)}
+.kpi.destaque{background:var(--verde);border-color:transparent}
 .kpi.destaque.negativo{background:#b4483b}
 .kpi.destaque.neutro{background:rgba(255,255,255,.18)}
 .alertas{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
-.alertas li{background:rgba(255,255,255,.1);border-left:4px solid #f5b041;padding:9px 12px;border-radius:8px;font-size:.92rem}
-.alertas li.ok{border-left-color:#4ade80}
-.explica{font-size:.9rem;opacity:.85;margin-top:auto}
-
-/* Recursos */
-.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
-.rec{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:24px;transition:box-shadow .2s ease,transform .2s ease}
-.rec:hover{box-shadow:var(--sombra);transform:translateY(-3px)}
-.ico{width:44px;height:44px;border-radius:12px;background:var(--verde-claro);display:grid;place-items:center;margin-bottom:14px}
-.ico svg{width:24px;height:24px;stroke:var(--verde-esc);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.rec p{color:var(--suave);font-size:.95rem;margin:0}
+.alertas li{background:rgba(255,255,255,.1);border:1px solid rgba(245,176,65,.6);padding:10px 12px;border-radius:10px;font-size:.92rem;text-align:center}
+.alertas li.ok{border-color:rgba(74,222,128,.55)}
+.explica{font-size:.92rem;opacity:.9;margin:0;text-align:center}
 
 /* Passos */
-.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;counter-reset:p}
-.passo{position:relative;padding:26px 22px 22px;background:#fff;border:1px solid var(--linha);border-radius:var(--raio)}
-.passo::before{counter-increment:p;content:counter(p);position:absolute;top:-18px;left:22px;width:36px;height:36px;border-radius:50%;background:var(--verde);color:#fff;font-weight:800;display:grid;place-items:center;box-shadow:0 6px 14px rgba(22,163,74,.3)}
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:p}
+.passo{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:30px 22px 26px;text-align:center;box-shadow:var(--sombra)}
+.passo::before{counter-increment:p;content:counter(p);width:44px;height:44px;border-radius:50%;background:var(--verde);color:#fff;font-weight:800;font-size:1.1rem;display:grid;place-items:center;margin:0 auto 16px;box-shadow:0 6px 14px rgba(22,163,74,.28)}
 .passo p{color:var(--suave);font-size:.95rem;margin:0}
 
-/* Para quem */
-.lista-x{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-.lista-x li{display:flex;gap:10px}
-.lista-x li::before{flex:none;font-weight:800;width:22px;text-align:center}
-.lista-x.sim-l li::before{content:"✓";color:var(--verde)}
-.lista-x.nao-l li::before{content:"✕";color:#9aa6a4}
-.aviso{margin-top:28px;background:#fffbea;border:1px solid #f1e3a1;border-radius:var(--raio);padding:18px 22px;font-size:.95rem}
-.aviso strong{color:#7a5d00}
+/* Recursos */
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.rec{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:28px 22px;text-align:center;box-shadow:var(--sombra);transition:box-shadow .2s ease,transform .2s ease}
+.rec:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,59,53,.12)}
+.rec .ico{margin:0 auto 16px}
+.rec p{color:var(--suave);font-size:.93rem;margin:0}
 
 /* Oferta */
-.oferta{background:linear-gradient(160deg,var(--tinta) 0%,#0b2e29 100%);color:#fff}
-.oferta h2,.oferta h3{color:#fff}
-.oferta .lead{color:rgba(255,255,255,.8)}
-.preco-card{max-width:560px;margin:36px auto 0;background:#fff;color:var(--texto);border-radius:20px;padding:36px 32px;box-shadow:0 24px 60px rgba(0,0,0,.25);text-align:center}
+.oferta{background:linear-gradient(160deg,var(--tinta) 0%,#0b2e29 100%);color:#fff;border-top:0}
+.oferta h2{color:#fff}
+.oferta .lead{color:rgba(255,255,255,.82)}
+.oferta .eyebrow{background:rgba(255,255,255,.12);color:#bbf7d0}
+.preco-card{max-width:620px;margin:0 auto;background:#fff;color:var(--texto);border-radius:22px;padding:40px 36px;box-shadow:0 24px 60px rgba(0,0,0,.25);text-align:center}
 .preco-card .nome{font-weight:700;color:var(--tinta);font-size:1.1rem}
-.selo-promo{display:inline-block;background:#fde68a;color:#7a4b00;font-weight:800;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:10px}
-.preco-hero{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 10px;margin:0 0 16px;font-weight:600;color:var(--suave)}
-.preco-hero strong{color:var(--tinta);font-size:1.5rem;font-weight:800}
+.selo-promo{display:inline-block;background:#fde68a;color:#7a4b00;font-weight:800;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;padding:6px 12px;border-radius:999px;margin-bottom:12px}
 .preco{font-size:3.6rem;font-weight:800;color:var(--tinta);letter-spacing:-.03em;line-height:1;margin:14px 0 4px}
 .preco small{font-size:1.4rem;vertical-align:top;margin-right:4px;font-weight:700}
-.preco-sub{color:var(--suave);font-weight:500;margin-bottom:24px}
-.inclui{list-style:none;padding:0;margin:0 0 28px;text-align:left;display:grid;gap:10px;border-top:1px solid var(--linha);padding-top:22px}
-.inclui li{display:flex;gap:10px}
-.inclui li::before{content:"✓";color:var(--verde);font-weight:800}
+.preco-sub{color:var(--suave);font-weight:500;margin-bottom:26px}
+.inclui{list-style:none;padding:24px 0 0;margin:0 0 30px;text-align:left;display:grid;gap:12px;border-top:1px solid var(--linha)}
+.inclui li{display:flex;gap:12px;align-items:flex-start}
+.inclui li::before{content:"✓";flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:800;background:var(--verde-claro);color:var(--verde-esc);margin-top:2px}
+.preco-card .btn{width:100%;max-width:440px}
 .pagto{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:16px}
 .pagto span{font-size:.78rem;font-weight:600;color:var(--suave);border:1px solid var(--linha);border-radius:6px;padding:4px 9px}
 
 /* FAQ */
-.faq{max-width:780px;margin:36px auto 0}
-.faq details{border:1px solid var(--linha);border-radius:12px;background:#fff;margin-bottom:10px}
-.faq summary{cursor:pointer;list-style:none;padding:18px 52px 18px 20px;font-weight:600;color:var(--tinta);position:relative}
+.faq{max-width:800px;margin:0 auto}
+.faq details{border:1px solid var(--linha);border-radius:14px;background:#fff;margin-bottom:12px;box-shadow:0 1px 2px rgba(15,59,53,.05)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 56px 20px 24px;font-weight:600;color:var(--tinta);position:relative}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:1.5rem;font-weight:400;color:var(--verde)}
+.faq summary::after{content:"+";position:absolute;right:22px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:var(--verde-claro);color:var(--verde-esc);display:grid;place-items:center;font-size:1.2rem;font-weight:600}
 .faq details[open] summary::after{content:"−"}
-.faq details p{padding:0 20px 18px;margin:0;color:var(--suave)}
+.faq details p{padding:0 24px 20px;margin:0;color:var(--suave)}
+.faq-cta{text-align:center;margin-top:40px}
 
 /* Rodapé */
-footer{background:#0b2420;color:rgba(255,255,255,.7);padding:40px 0 110px;font-size:.85rem}
-footer p{margin-bottom:8px}
-footer strong{color:#fff}
+footer{background:#0b2420;color:rgba(255,255,255,.72);padding:56px 0 40px;font-size:.86rem}
+.rodape{display:grid;grid-template-columns:1.2fr 1fr 1.6fr;gap:40px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.12)}
+footer h4{color:#fff;font-size:.95rem;margin:0 0 12px}
+footer p{margin:0 0 8px}
+footer a{color:rgba(255,255,255,.85);text-decoration:none}
+footer a:hover{text-decoration:underline}
+.rodape ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.marca-rod{display:flex;align-items:center;gap:10px;font-weight:800;color:#fff;font-size:1.05rem;margin-bottom:12px}
+.legal{padding-top:22px;font-size:.8rem;color:rgba(255,255,255,.55)}
 
 /* Barra fixa no celular */
 .barra-cel{display:none;position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--linha);padding:10px 16px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -6px 20px rgba(0,0,0,.08);align-items:center;gap:12px;transform:translateY(110%);transition:transform .25s ease}
@@ -201,26 +261,213 @@ footer strong{color:#fff}
 .barra-cel .p small{display:block;font-weight:500;color:var(--suave);font-size:.75rem}
 .barra-cel .btn{flex:1;padding:13px 14px;font-size:1rem}
 
+/* ============================================================
+   Acabamento "componente" em toda a página (mesma linguagem dos
+   botões e da logo): degradê, brilho em cima, borda de profundidade
+   embaixo e sombra suave.
+   ============================================================ */
+:root{
+  --g-verde:linear-gradient(180deg,#34d070 0%,#18a84c 55%,#12913f 100%);
+  --relevo:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -3px 0 rgba(0,0,0,.16);
+  --cartao-sombra:0 1px 0 #d6e4e0,0 2px 4px rgba(15,59,53,.05),0 10px 26px -12px rgba(15,59,53,.18);
+  --cartao-sombra-hover:0 1px 0 #cfe0db,0 4px 8px rgba(15,59,53,.06),0 22px 40px -16px rgba(15,59,53,.28);
+}
+
+/* Etiquetas das seções: pílula com ponto verde e contorno */
+.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #c6e9d3;background:linear-gradient(180deg,#f3fbf6,#e5f6ec);box-shadow:inset 0 1px 0 #fff,0 1px 2px rgba(15,59,53,.06)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 3px rgba(22,163,74,.18)}
+.oferta .eyebrow{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.10);box-shadow:none}
+.oferta .eyebrow::before{background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.22)}
+
+/* Ícones em "pastilha" 3D, como a logo */
+.ico{background:var(--g-verde);box-shadow:var(--relevo),0 6px 14px -4px rgba(22,163,74,.45);border-radius:14px}
+.ico svg{stroke:#fff;filter:drop-shadow(0 1px 0 rgba(0,0,0,.18))}
+
+/* Cartões: todos com a mesma elevação, um leve degradê e o "levantar" ao passar o mouse */
+.destaque,.rec,.passo,.cartao,.sim-form,.print,.faq details{border:1px solid #e1ebe8;background:linear-gradient(180deg,#fff 0%,#fbfdfc 100%);box-shadow:var(--cartao-sombra);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.destaque:hover,.rec:hover,.passo:hover,.cartao:hover{transform:translateY(-3px);box-shadow:var(--cartao-sombra-hover)}
+.cartao.bom{border:2px solid var(--verde);box-shadow:0 1px 0 #bfe5cd,0 10px 30px -12px rgba(22,163,74,.40)}
+
+/* Números dos passos e marcadores ✓ / ✕ em relevo */
+.passo::before{background:var(--g-verde);box-shadow:var(--relevo),0 6px 14px -4px rgba(22,163,74,.5);text-shadow:0 1px 0 rgba(0,0,0,.2)}
+.cartao.bom .marcador{background:var(--g-verde);box-shadow:var(--relevo),0 6px 14px -4px rgba(22,163,74,.5);text-shadow:0 1px 0 rgba(0,0,0,.2)}
+.cartao.ruim .marcador{background:linear-gradient(180deg,#f6f8f7,#e3e9e7);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(0,0,0,.08),0 3px 8px -3px rgba(15,59,53,.2)}
+.lista.sim-l li::before,.inclui li::before{background:var(--g-verde);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -2px 0 rgba(0,0,0,.15),0 2px 5px -1px rgba(22,163,74,.45)}
+.lista.nao-l li::before{background:linear-gradient(180deg,#f6f8f7,#e3e9e7);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(0,0,0,.08)}
+
+/* Selos do topo e formas de pagamento: pílulas com contorno, como botão secundário pequeno */
+.selos span,.pagto span{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #d3e3de;border-radius:999px;padding:6px 12px;font-size:.84rem;font-weight:600;color:var(--tinta-2);box-shadow:0 1px 2px rgba(15,59,53,.06),0 3px 8px -4px rgba(15,59,53,.12)}
+.selos span::before,.pagto span::before{content:"";width:14px;height:14px;flex:none;background:var(--verde);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/contain no-repeat}
+
+/* Faixa de confiança: ícones em pastilha */
+.confianca{background:linear-gradient(180deg,#fff,#f8fbfa)}
+.confianca svg{width:34px;height:34px;padding:8px;border-radius:10px;stroke:#fff;background:var(--g-verde);box-shadow:var(--relevo),0 4px 10px -3px rgba(22,163,74,.45)}
+
+/* Prints: barra de janela com as 3 bolinhas coloridas */
+.janela-bar{background:linear-gradient(180deg,#f7f9f8,#eef2f1)}
+.janela-bar i:nth-child(1){background:#ff6058}
+.janela-bar i:nth-child(2){background:#ffbd2e}
+.janela-bar i:nth-child(3){background:#29c940}
+.janela-bar i{box-shadow:inset 0 -1px 0 rgba(0,0,0,.15)}
+
+/* Simulador: campos com relevo para dentro e exemplos como botões */
+.campo input,.campo select{box-shadow:inset 0 2px 3px rgba(122,93,0,.10),0 1px 0 #fff}
+.atalhos button{display:inline-flex;align-items:center;gap:6px;border:1px solid #d3e3de;border-radius:10px;background:#fff;color:var(--verde-esc);box-shadow:0 1px 2px rgba(15,59,53,.06),0 3px 8px -4px rgba(15,59,53,.14);transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease}
+.atalhos button::before{content:"";width:12px;height:12px;flex:none;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 4l13 8-13 8z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 4l13 8-13 8z'/%3E%3C/svg%3E") center/contain no-repeat}
+.atalhos button:hover{border-color:var(--verde);transform:translateY(-1px);box-shadow:0 1px 2px rgba(15,59,53,.06),0 8px 14px -6px rgba(15,59,53,.22)}
+.atalhos button:active,.atalhos button.ativo{transform:none;background:var(--verde-claro);border-color:var(--verde);box-shadow:inset 0 2px 3px rgba(15,59,53,.12)}
+.sim-res{background:linear-gradient(160deg,#134a42 0%,#0f3b35 55%,#0b2e29 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 18px 40px -16px rgba(11,46,41,.6)}
+.kpi{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 4px 10px -4px rgba(0,0,0,.35)}
+.kpi.destaque{background:var(--g-verde);box-shadow:var(--relevo),0 8px 18px -6px rgba(22,163,74,.6)}
+.kpi.destaque.negativo{background:linear-gradient(180deg,#d0604f,#a83d30);box-shadow:var(--relevo)}
+.kpi.destaque.neutro{background:linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,.14));box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+
+/* Perguntas: o "+" vira um botãozinho em relevo e a pergunta aberta ganha destaque */
+.faq details:hover{border-color:#c6e9d3}
+.faq details[open]{border-color:var(--verde);box-shadow:0 1px 0 #bfe5cd,0 12px 28px -14px rgba(22,163,74,.35)}
+.faq summary::after{background:var(--g-verde);color:#fff;box-shadow:var(--relevo),0 3px 8px -2px rgba(22,163,74,.45);text-shadow:0 1px 0 rgba(0,0,0,.2)}
+
+/* Cartão de preço */
+.preco-card{border-top:5px solid var(--verde);box-shadow:inset 0 1px 0 #fff,0 30px 70px -20px rgba(0,0,0,.45)}
+.selo-promo{background:linear-gradient(180deg,#fff1a8,#fcd34d);border:1px solid #f0c53a;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -2px 0 rgba(0,0,0,.08),0 3px 8px -3px rgba(180,120,0,.4)}
+.preco{text-shadow:0 2px 0 #e3efe9}
+
+/* Aviso de transparência */
+.aviso{background:linear-gradient(180deg,#fffdf2,#fff7dc);box-shadow:inset 0 1px 0 #fff,0 6px 16px -10px rgba(122,93,0,.35)}
+
+/* Barra do celular */
+.barra-cel{box-shadow:0 -10px 24px -10px rgba(15,59,53,.25)}
+
 /* Responsivo */
-@media (max-width:960px){
-  .hero .wrap,.sim,.duas{grid-template-columns:1fr}
-  .grade{grid-template-columns:1fr 1fr}
-  .passos{grid-template-columns:1fr 1fr;row-gap:34px}
+@media (max-width:1100px){
+  .menu a svg{display:none}
+}
+@media (max-width:1020px){
+  .menu,.divisor{display:none}
+  .topo .btn{margin-left:auto}
+  .grade{grid-template-columns:repeat(2,1fr)}
+  .passos{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  .hero-grade,.sim,.duas,.prints{grid-template-columns:1fr}
+  .hero-grade{gap:36px}
+  .hero-texto{text-align:center}
+  .hero-texto .lead{margin:0 auto}
+  .preco-hero,.acoes,.selos{justify-content:center}
+  .confianca .wrap{grid-template-columns:repeat(2,1fr)}
+  .confianca div:nth-child(3){border-left:0}
+  .confianca div:nth-child(n+3){border-top:1px solid var(--linha)}
+  .rodape{grid-template-columns:1fr 1fr}
+  .rodape > div:last-child{grid-column:1/-1}
 }
 @media (max-width:620px){
-  .sec{padding:60px 0}
+  .sec{padding:64px 0}
   .wrap{padding:0 16px}
-  .hero{padding:36px 0 52px}
-  .grade,.passos{grid-template-columns:1fr}
+  .cab{margin-bottom:36px}
+  .hero{padding:40px 0 48px}
+  .destaques,.grade,.passos{grid-template-columns:1fr}
+  .destaques{margin-top:40px}
   .topo .btn{display:none}
   .barra-cel{display:flex}
-  .preco-card{padding:28px 20px}
+  .btn,.btn-sec{width:100%}
+  .cartao{padding:26px 20px}
+  .preco-card{padding:30px 20px}
   .preco{font-size:3rem}
-  .btn{width:100%}
-  .btn-sec{width:100%;justify-content:center}
   .kpi strong{font-size:1.35rem}
+  .previa{height:260px}
+  .rec,.destaque,.passo{padding:22px 18px}
+  .rec .ico,.destaque .ico{width:44px;height:44px;margin-bottom:10px}
+  .confianca div{padding:16px 8px;font-size:.85rem}
+  .rodape{grid-template-columns:1fr;gap:28px}
+  footer{padding-bottom:110px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ============================================================
+   MODO ESCURO (teste): vários tons de escuro, o verde fica igual.
+   Camadas: fundo 0b1412 · seções 0f1a17 / 111e1b · cartões 16241f→132019
+   ============================================================ */
+:root{
+  color-scheme:dark;
+  --tinta:#eef5f2; --tinta-2:#cfe0da; --texto:#dce7e3; --suave:#9db0aa;
+  --linha:#23352f; --fundo:#0f1a17; --branco:#0b1412;
+  --verde-claro:rgba(34,197,94,.14); --verde-esc:#4ade80;
+  --cartao-sombra:0 1px 0 rgba(255,255,255,.03),0 2px 4px rgba(0,0,0,.35),0 14px 30px -14px rgba(0,0,0,.7);
+  --cartao-sombra-hover:0 1px 0 rgba(255,255,255,.04),0 4px 8px rgba(0,0,0,.4),0 24px 44px -16px rgba(0,0,0,.85);
+}
+body{background:#0b1412;color:var(--texto)}
+.sec{border-top-color:#1b2a26}
+.sec.cinza{background:#0f1a17}
+.sec:not(.cinza):not(.oferta){background:#0b1412}
+
+/* Cabeçalho */
+.topo{background:rgba(13,23,21,.94);border-bottom-color:#1f302b;box-shadow:0 8px 28px -10px rgba(0,0,0,.8)}
+.marca{color:#f2f8f5}
+.divisor{background:#24372f}
+.menu{background:#13201c;border-color:#24372f;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.menu a{color:#b9cbc5}
+.menu a + a{border-left-color:#24372f}
+.menu a:hover{background:rgba(34,197,94,.12);color:#6ee7a0}
+
+/* Topo da página */
+.hero{background:radial-gradient(1200px 500px at 20% -10%,rgba(34,197,94,.14),transparent 60%),linear-gradient(180deg,#0e1b17 0%,#0b1412 100%)}
+.eyebrow{background:linear-gradient(180deg,rgba(34,197,94,.16),rgba(34,197,94,.08));border-color:rgba(74,222,128,.28);color:#6ee7a0;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+
+/* Botão secundário e de texto */
+.btn-sec{background:#13201c;border-color:#2a3f38;color:#6ee7a0;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 6px 14px -6px rgba(0,0,0,.6)}
+.btn-sec:hover{border-color:var(--verde)}
+.btn-txt,.ver-maior{color:#6ee7a0}
+
+/* Cartões */
+.destaque,.rec,.passo,.cartao,.sim-form,.print,.faq details{background:linear-gradient(180deg,#17261f 0%,#132019 100%);border-color:#22342e;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),var(--cartao-sombra)}
+.destaque p{color:#e3eeea}
+.cartao.bom{border-color:var(--verde);box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 0 0 1px rgba(34,197,94,.15),0 14px 34px -12px rgba(22,163,74,.35)}
+.cartao-cab{border-bottom-color:#23352f}
+.cartao.ruim .marcador{background:linear-gradient(180deg,#2a3a35,#1d2a26);color:#8fa39d;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 3px 8px -3px rgba(0,0,0,.6)}
+.lista.nao-l li::before{background:linear-gradient(180deg,#2a3a35,#1d2a26);color:#8fa39d;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.cartao.ruim .lista li{color:#8fa39d}
+
+/* Faixa de confiança, selos e pagamento */
+.confianca{background:linear-gradient(180deg,#0e1916,#0c1613);border-top-color:#1b2a26}
+.confianca div{color:#dce7e3}
+.confianca div + div{border-left-color:#1f302b}
+.selos span,.pagto span{background:#13201c;border-color:#2a3f38;color:#cfe0da;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 3px 8px -4px rgba(0,0,0,.6)}
+
+/* Prints (as imagens continuam claras, são da planilha) */
+.janela-bar{background:linear-gradient(180deg,#1b2b26,#16241f);border-bottom-color:#23352f;color:#9db0aa}
+.janela-bar b{color:#eef5f2}
+.print figcaption{background:#121e1b;border-top-color:#23352f}
+.previa::after{background:linear-gradient(180deg,rgba(18,30,27,0),#121e1b)}
+
+/* Simulador */
+.campo label{color:#9db0aa}
+.campo input,.campo select{background:#2a2410;border-color:#6b5a1e;color:#fbe7a1;box-shadow:inset 0 2px 4px rgba(0,0,0,.45)}
+.campo select option{background:#1a1a12;color:#fbe7a1}
+.atalhos-tit{color:#9db0aa}
+.atalhos button{background:#13201c;border-color:#2a3f38;color:#6ee7a0;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 3px 8px -4px rgba(0,0,0,.6)}
+.atalhos button:active,.atalhos button.ativo{background:rgba(34,197,94,.16);border-color:var(--verde);box-shadow:inset 0 2px 4px rgba(0,0,0,.45)}
+.sim-res{background:linear-gradient(160deg,#103a31 0%,#0c2b25 60%,#08201b 100%);border:1px solid #1d4a3f}
+
+/* Aviso */
+.aviso{background:linear-gradient(180deg,#2a2410,#221d0c);border-color:#5a4b17;color:#ecdca6;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.aviso strong{color:#fcd34d}
+
+/* Oferta */
+.oferta{background:radial-gradient(900px 400px at 50% 0%,rgba(34,197,94,.16),transparent 60%),linear-gradient(180deg,#07110e 0%,#050c0a 100%)}
+.preco-card{background:linear-gradient(180deg,#17261f,#111c18);color:var(--texto);border:1px solid #23352f;border-top:5px solid var(--verde);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 30px 70px -20px rgba(0,0,0,.9)}
+.preco{text-shadow:none}
+.inclui{border-top-color:#23352f}
+
+/* Perguntas */
+.faq details:hover{border-color:#2d4a40}
+.faq details[open]{border-color:var(--verde)}
+.faq summary{color:#eef5f2}
+
+/* Rodapé e barra do celular */
+footer{background:#050b09;border-top:1px solid #15221e}
+.rodape{border-bottom-color:rgba(255,255,255,.08)}
+.barra-cel{background:#0f1a17;border-top-color:#23352f;box-shadow:0 -10px 24px -8px rgba(0,0,0,.8)}
+.barra-cel .p{color:#f2f8f5}
 </style>
 </head>
 <body>
@@ -235,9 +482,45 @@ footer strong{color:#fff}
 <header class="topo">
   <div class="wrap">
     <a class="marca" href="#inicio" aria-label="Calcula Ponto, início">
-      <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#16a34a"/><circle cx="32" cy="32" r="18" fill="none" stroke="#fff" stroke-width="5"/><path d="M32 21v12l8 5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
-      Calcula Ponto
+      <!-- Logo: ícone de app escuro com o "C" de relógio. No cabeçalho ele se "monta" ao abrir a página. -->
+      <svg class="logo-app" width="44" height="44" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="cpFundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#173a30"/><stop offset="1" stop-color="#07120f"/></linearGradient>
+          <radialGradient id="cpLuz" cx=".28" cy=".12" r=".85"><stop offset="0" stop-color="#34d070" stop-opacity=".42"/><stop offset=".65" stop-color="#34d070" stop-opacity="0"/></radialGradient>
+          <linearGradient id="cpBorda" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".45" stop-color="#fff" stop-opacity=".07"/><stop offset="1" stop-color="#fff" stop-opacity=".03"/></linearGradient>
+          <linearGradient id="cpArco" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a6ffcb"/><stop offset=".45" stop-color="#34d070"/><stop offset="1" stop-color="#0e9f4a"/></linearGradient>
+          <filter id="cpBrilho" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4"/></filter>
+          <symbol id="cpIcone" viewBox="0 0 64 64">
+            <rect width="64" height="64" rx="18" fill="url(#cpFundo)"/>
+            <rect width="64" height="64" rx="18" fill="url(#cpLuz)"/>
+            <path d="M45.4 18.6A19 19 0 1 0 45.4 45.4" fill="none" stroke="#34d070" stroke-width="8" stroke-linecap="round" filter="url(#cpBrilho)" opacity=".7"/>
+            <path d="M45.4 18.6A19 19 0 1 0 45.4 45.4" fill="none" stroke="url(#cpArco)" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="51" cy="32" r="4.4" fill="#a6ffcb" filter="url(#cpBrilho)"/>
+            <circle cx="51" cy="32" r="3.6" fill="#6ff5a5"/>
+            <path d="M32 32V19.5M32 32h8.5" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="32" cy="32" r="3.3" fill="#fff"/>
+            <rect x=".75" y=".75" width="62.5" height="62.5" rx="17.25" fill="none" stroke="url(#cpBorda)" stroke-width="1.5"/>
+          </symbol>
+        </defs>
+        <rect width="64" height="64" rx="18" fill="url(#cpFundo)"/>
+        <rect width="64" height="64" rx="18" fill="url(#cpLuz)"/>
+        <path class="cp-c" d="M45.4 18.6A19 19 0 1 0 45.4 45.4" fill="none" stroke="#34d070" stroke-width="8" stroke-linecap="round" filter="url(#cpBrilho)" opacity=".7"/>
+        <path class="cp-c" d="M45.4 18.6A19 19 0 1 0 45.4 45.4" fill="none" stroke="url(#cpArco)" stroke-width="8" stroke-linecap="round"/>
+        <g class="cp-ponto"><circle cx="51" cy="32" r="4.4" fill="#a6ffcb" filter="url(#cpBrilho)"/><circle cx="51" cy="32" r="3.6" fill="#6ff5a5"/></g>
+        <path class="cp-ponteiros" d="M32 32V19.5M32 32h8.5" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="32" cy="32" r="3.3" fill="#fff"/>
+        <rect x=".75" y=".75" width="62.5" height="62.5" rx="17.25" fill="none" stroke="url(#cpBorda)" stroke-width="1.5"/>
+      </svg>
+      <span class="nome-marca">Calcula <b>Ponto</b><small>Planilha de ponto e folha</small></span>
     </a>
+    <span class="divisor" aria-hidden="true"></span>
+    <nav class="menu" aria-label="Seções da página">
+      <a href="#como"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Como funciona</a>
+      <a href="#teste"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Teste grátis</a>
+      <a href="#recursos"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Recursos</a>
+      <a href="#oferta"><svg viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>Preço</a>
+      <a href="#faq"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 4.9.8c0 1.7-2.4 2.2-2.4 3.7M12 17h.01"/></svg>Dúvidas</a>
+    </nav>
     <a class="btn js-checkout" href="https://pay.hotmart.com/K108418846B">Comprar por R$ 49,90</a>
   </div>
 </header>
@@ -247,30 +530,36 @@ footer strong{color:#fff}
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div>
-      <span class="eyebrow" id="heroEyebrow">Planilha em Excel para pequenas empresas</span>
-      <h1 id="heroTitulo">Feche a folha de ponto do mês em minutos, sem calculadora.</h1>
-      <p class="lead" id="heroLead">Você lança os horários. Ela calcula horas extras, noturno, INSS, IRRF e FGTS, e entrega a folha de cada funcionário pronta para assinar.</p>
-      <div class="preco-hero"><strong>R$ 49,90</strong> pagamento único, sem mensalidade</div>
-      <a class="btn grande js-checkout" href="https://pay.hotmart.com/K108418846B">Quero a planilha por R$ 49,90</a>
-      <a class="btn-sec" href="#teste">Testar o cálculo antes ›</a>
-      <ul class="checks">
-        <li>Horas extras com a tolerância de marcação da CLT (até 10 minutos por dia)</li>
-        <li>INSS por faixas e IRRF já com a redução de 2026 (isento até R$ 5 mil)</li>
-        <li>Jornada de 44, 42 ou 40 h por semana: mude um número e tudo se ajusta</li>
-      </ul>
-      <div class="selos">
-        <span>Até 10 funcionários</span>
-        <span>Sem macros</span>
-        <span>Arquivo Excel (.xlsx)</span>
+    <div class="hero-grade">
+      <div class="hero-texto">
+        <div class="app-selo"><svg width="58" height="58" aria-hidden="true"><use href="#cpIcone"/></svg><div><strong>Calcula <b>Ponto</b></strong><span>Planilha para Microsoft Excel · sem mensalidade</span></div></div><br>
+        <span class="eyebrow" id="heroEyebrow">Planilha em Excel para pequenas empresas</span>
+        <h1 id="heroTitulo">Feche a folha de ponto do mês em minutos, sem calculadora.</h1>
+        <p class="lead" id="heroLead">Você lança os horários. Ela calcula horas extras, noturno, INSS, IRRF e FGTS, e entrega a folha de cada funcionário pronta para assinar.</p>
+        <div class="preco-hero"><strong>R$ 49,90</strong> pagamento único, sem mensalidade</div>
+        <div class="acoes">
+          <a class="btn grande js-checkout" href="https://pay.hotmart.com/K108418846B">Quero a planilha por R$ 49,90</a>
+          <a class="btn-sec" href="#teste">Testar o cálculo antes</a>
+        </div>
+        <div class="selos">
+          <span>Até 10 funcionários</span>
+          <span>Sem macros</span>
+          <span>Arquivo Excel (.xlsx)</span>
+        </div>
       </div>
+
+      <figure class="print">
+        <div class="janela-bar"><i></i><i></i><i></i><b>PAINEL</b>&nbsp;· print real da planilha</div>
+        <picture><source media="(max-width:620px)" srcset="img/painel-topo-cel.jpg" width="1000" height="809"><img src="img/painel-topo.jpg" width="1400" height="568" alt="Print real da aba Painel: 3 funcionários, 23,3 h extras, total bruto de R$ 11.122,33, INSS de R$ 1.001,27, IRRF de R$ 0,00 já com a redução de 2026 e custo da folha de R$ 12.003,85"></picture>
+        <figcaption>Print real da planilha, com empresa e funcionários fictícios.</figcaption>
+      </figure>
     </div>
 
-    <figure class="print">
-      <div class="janela-bar"><i></i><i></i><i></i><b>PAINEL</b>&nbsp;· print real da planilha</div>
-      <picture><source media="(max-width:620px)" srcset="img/painel-topo-cel.jpg" width="1000" height="809"><img src="img/painel-topo.jpg" width="1400" height="568" alt="Print real da aba Painel: 3 funcionários, 23,3 h extras, total bruto de R$ 11.122,33, INSS de R$ 1.001,27, IRRF de R$ 0,00 já com a redução de 2026 e custo da folha de R$ 12.003,85"></picture>
-      <figcaption>Print real da planilha, com empresa e funcionários fictícios.</figcaption>
-    </figure>
+    <div class="destaques">
+      <div class="destaque"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><p>Horas extras com a tolerância de marcação da CLT (até 10 minutos por dia)</p></div>
+      <div class="destaque"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><p>INSS por faixas e IRRF já com a redução de 2026 (isento até R$ 5 mil)</p></div>
+      <div class="destaque"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><p>Jornada de 44, 42 ou 40 h por semana: mude um número e tudo se ajusta</p></div>
+    </div>
   </div>
 </section>
 
@@ -305,16 +594,28 @@ footer strong{color:#fff}
 })();
 </script>
 
+<!-- CONFIANÇA -->
+<div class="confianca">
+  <div class="wrap">
+    <div><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Compra segura pela Hotmart</div>
+    <div><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/></svg>Acesso no seu e-mail</div>
+    <div><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Pix, cartão ou boleto</div>
+    <div><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Sem mensalidade</div>
+  </div>
+</div>
+
 <!-- PROBLEMA -->
 <section class="sec">
-  <div class="wrap centro">
-    <span class="eyebrow">O problema</span>
-    <h2>Conferir ponto na calculadora toma o seu fim de mês</h2>
-    <p class="lead">Somar horas não é como somar números: 60 minutos viram uma hora, o turno da noite atravessa o dia e cada feriado muda a conta. Um erro pequeno vira pagamento errado.</p>
-    <div class="duas" style="text-align:left">
+  <div class="wrap">
+    <div class="cab">
+      <span class="eyebrow">O problema</span>
+      <h2>Conferir ponto na calculadora toma o seu fim de mês</h2>
+      <p class="lead">Somar horas não é como somar números: 60 minutos viram uma hora, o turno da noite atravessa o dia e cada feriado muda a conta. Um erro pequeno vira pagamento errado.</p>
+    </div>
+    <div class="duas">
       <div class="cartao ruim">
-        <h3>Na calculadora ou no caderno</h3>
-        <ul>
+        <div class="cartao-cab"><div class="marcador">✕</div><h3>Na calculadora ou no caderno</h3></div>
+        <ul class="lista nao-l">
           <li>Quatro subtrações por dia, para cada funcionário</li>
           <li>Converter minutos em horas decimais à mão</li>
           <li>Separar o horário noturno e aplicar a hora reduzida</li>
@@ -323,8 +624,8 @@ footer strong{color:#fff}
         </ul>
       </div>
       <div class="cartao bom">
-        <h3>Com a Calcula Ponto</h3>
-        <ul>
+        <div class="cartao-cab"><div class="marcador">✓</div><h3>Com a Calcula Ponto</h3></div>
+        <ul class="lista sim-l">
           <li>Você digita só os horários. O resto aparece calculado</li>
           <li>Saldo do dia em horas decimais, pronto para multiplicar</li>
           <li>Horas noturnas separadas, com hora reduzida opcional</li>
@@ -336,10 +637,26 @@ footer strong{color:#fff}
   </div>
 </section>
 
-<!-- SIMULADOR -->
-<section class="sec cinza" id="teste">
+<!-- COMO FUNCIONA -->
+<section class="sec cinza" id="como">
   <div class="wrap">
-    <div class="centro">
+    <div class="cab">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Quatro passos, e a primeira folha sai no mesmo dia</h2>
+    </div>
+    <div class="passos">
+      <div class="passo"><h3>Configure</h3><p>Nome da empresa, mês de referência e as regras: hora extra, feriado, tolerância e noturno.</p></div>
+      <div class="passo"><h3>Cadastre a equipe</h3><p>Nome, cargo, salário e jornada semanal de até 10 funcionários. Horas mensais e jornada diária saem sozinhas.</p></div>
+      <div class="passo"><h3>Lance os horários</h3><p>Na aba de cada funcionário, digite as 4 marcações do dia. O cálculo aparece na mesma linha.</p></div>
+      <div class="passo"><h3>Feche o mês</h3><p>Confira o Painel e o Resumo, imprima as folhas individuais e colha as assinaturas.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULADOR -->
+<section class="sec" id="teste">
+  <div class="wrap">
+    <div class="cab">
       <span class="eyebrow">Teste agora</span>
       <h2>Mude os horários e veja o cálculo</h2>
       <p class="lead">Este teste usa as mesmas regras da planilha: jornada de 44, 42 ou 40 h por semana em 5 dias, tolerância de 10 minutos por dia e adicional noturno das 22h às 5h.</p>
@@ -347,6 +664,7 @@ footer strong{color:#fff}
 
     <div class="sim">
       <form class="sim-form" id="simForm" onsubmit="return false">
+        <h3>Horários do dia</h3>
         <div class="campos">
           <div class="campo"><label for="e1">Entrada</label><input id="e1" type="time" value="07:30"></div>
           <div class="campo"><label for="s1">Saída para o almoço</label><input id="s1" type="time" value="12:00"></div>
@@ -367,6 +685,7 @@ footer strong{color:#fff}
             </select>
           </div>
         </div>
+        <p class="atalhos-tit">Ou escolha um exemplo pronto:</p>
         <div class="atalhos" aria-label="Exemplos prontos">
           <button type="button" data-ex="07:30,12:00,13:00,17:30,util">Dia com hora extra</button>
           <button type="button" data-ex="tolerancia">Dentro da tolerância</button>
@@ -393,10 +712,33 @@ footer strong{color:#fff}
   </div>
 </section>
 
+<!-- POR DENTRO -->
+<section class="sec cinza">
+  <div class="wrap">
+    <div class="cab">
+      <span class="eyebrow">Por dentro da planilha</span>
+      <h2>Veja como fica o mês fechado</h2>
+      <p class="lead">Prints reais da planilha, com empresa e funcionários fictícios.</p>
+    </div>
+    <div class="prints">
+      <figure class="print">
+        <div class="janela-bar"><i></i><i></i><i></i><b>FUNC 01</b>&nbsp;· folha de ponto individual</div>
+        <a class="previa" href="img/func01.jpg" target="_blank" rel="noopener"><img src="img/func01.jpg" width="1400" height="678" loading="lazy" alt="Print real da folha de ponto de uma funcionária: horários em azul, horas trabalhadas, saldo do dia e alertas de intervalo menor que 1 hora e jornada acima de 10 horas"></a>
+        <figcaption>Você digita só os horários (em azul). Trabalhado, saldo e alertas saem sozinhos.<br><a class="ver-maior btn-txt" href="img/func01.jpg" target="_blank" rel="noopener">Ver o print inteiro</a></figcaption>
+      </figure>
+      <figure class="print">
+        <div class="janela-bar"><i></i><i></i><i></i><b>PAINEL</b>&nbsp;· fechamento do mês</div>
+        <a class="previa" href="img/painel.jpg" target="_blank" rel="noopener"><img src="img/painel.jpg" width="1400" height="1492" loading="lazy" alt="Print real do Painel do mês com os totais da equipe e 4 gráficos: horas extras por funcionário, bruto e líquido, composição do salário e horas por dia"></a>
+        <figcaption>O Painel junta a equipe toda, com os totais do mês e 4 gráficos.<br><a class="ver-maior btn-txt" href="img/painel.jpg" target="_blank" rel="noopener">Ver o print inteiro</a></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- RECURSOS -->
 <section class="sec" id="recursos">
   <div class="wrap">
-    <div class="centro">
+    <div class="cab">
       <span class="eyebrow">O que a planilha faz</span>
       <h2>Tudo o que o fechamento do ponto pede, num arquivo só</h2>
     </div>
@@ -408,52 +750,22 @@ footer strong{color:#fff}
       <div class="rec"><div class="ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h3>Faltas e ocorrências</h3><p>Marque falta, atestado, folga ou férias na linha do dia. As faltas entram como desconto no fechamento.</p></div>
       <div class="rec"><div class="ico"><svg viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div><h3>Alertas na hora</h3><p>Batida faltando, intervalo menor que 1 hora e jornada acima de 10 horas aparecem destacados na própria linha.</p></div>
       <div class="rec"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>INSS, IRRF e FGTS</h3><p>INSS por faixas, IRRF já com a redução de 2026 (isento até R$ 5 mil) e FGTS da empresa, até o valor líquido de cada funcionário.</p></div>
-      <div class="rec"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>Painel com gráficos</h3><p>Os números do mês em destaque e 4 gráficos: horas extras, bruto e líquido, composição da folha e horas por dia. Mais o resumo de toda a equipe.</p></div>
-      <div class="rec"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><rect x="6" y="14" width="12" height="8"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg></div><h3>Pronta para imprimir</h3><p>Folha individual em uma página, com coluna de assinatura. As fórmulas ficam protegidas contra apagamento acidental.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- COMO FUNCIONA -->
-<section class="sec cinza">
-  <div class="wrap">
-    <div class="centro">
-      <span class="eyebrow">Como funciona</span>
-      <h2>Quatro passos, e a primeira folha sai no mesmo dia</h2>
-    </div>
-    <div class="passos">
-      <div class="passo"><h3>Configure</h3><p>Nome da empresa, mês de referência e as regras: hora extra, feriado, tolerância e noturno.</p></div>
-      <div class="passo"><h3>Cadastre a equipe</h3><p>Nome, cargo, salário e jornada semanal de até 10 funcionários. Horas mensais e jornada diária saem sozinhas.</p></div>
-      <div class="passo"><h3>Lance os horários</h3><p>Na aba de cada funcionário, digite as 4 marcações do dia. O cálculo aparece na mesma linha.</p></div>
-      <div class="passo"><h3>Feche o mês</h3><p>Confira o Painel e o Resumo, imprima as folhas individuais e colha as assinaturas.</p></div>
-    </div>
-
-    <div class="prints">
-      <figure class="print">
-        <div class="janela-bar"><i></i><i></i><i></i><b>FUNC 01</b>&nbsp;· folha de ponto individual</div>
-        <div class="rolagem"><img class="largo" src="img/func01.jpg" width="1400" height="678" loading="lazy" alt="Print real da folha de ponto de uma funcionária: horários em azul, horas trabalhadas, saldo do dia e alertas de intervalo menor que 1 hora e jornada acima de 10 horas"></div>
-        <figcaption><span class="dica-rolar">Arraste o print para o lado ›</span>Você digita só os horários (em azul). Trabalhado, saldo e alertas saem sozinhos. Print real, dados fictícios.</figcaption>
-      </figure>
-      <figure class="print">
-        <div class="janela-bar"><i></i><i></i><i></i><b>PAINEL</b>&nbsp;· fechamento do mês</div>
-        <div class="rolagem"><img class="largo" src="img/painel.jpg" width="1400" height="1492" loading="lazy" alt="Print real do Painel do mês com os totais da equipe e 4 gráficos: horas extras por funcionário, bruto e líquido, composição do salário e horas por dia"></div>
-        <figcaption><span class="dica-rolar">Arraste o print para o lado ›</span>O Painel junta a equipe toda, com 4 gráficos. Print real, dados fictícios.</figcaption>
-      </figure>
+      <div class="rec"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>Painel com gráficos</h3><p>Os números do mês em destaque e 4 gráficos: horas extras, bruto e líquido, composição da folha e horas por dia.</p></div>
     </div>
   </div>
 </section>
 
 <!-- PARA QUEM -->
-<section class="sec">
+<section class="sec cinza">
   <div class="wrap">
-    <div class="centro">
+    <div class="cab">
       <span class="eyebrow">Para quem é</span>
       <h2>Feita para quem fecha o ponto sozinho</h2>
     </div>
     <div class="duas">
       <div class="cartao bom">
-        <h3>É para você se…</h3>
-        <ul class="lista-x sim-l">
+        <div class="cartao-cab"><div class="marcador">✓</div><h3>É para você se…</h3></div>
+        <ul class="lista sim-l">
           <li>Tem um comércio, escritório, clínica, restaurante ou oficina com até 10 funcionários</li>
           <li>Recebe o ponto em papel, relógio ou aplicativo e precisa fazer as contas</li>
           <li>Quer conferir horas extras e noturno antes de mandar para o contador</li>
@@ -461,8 +773,8 @@ footer strong{color:#fff}
         </ul>
       </div>
       <div class="cartao ruim">
-        <h3>Não é para você se…</h3>
-        <ul class="lista-x nao-l">
+        <div class="cartao-cab"><div class="marcador">✕</div><h3>Não é para você se…</h3></div>
+        <ul class="lista nao-l">
           <li>Precisa de um registro eletrônico de ponto homologado</li>
           <li>Precisa calcular rescisão ou DSR sobre horas extras</li>
           <li>Tem mais de 10 funcionários</li>
@@ -476,10 +788,12 @@ footer strong{color:#fff}
 
 <!-- OFERTA -->
 <section class="sec oferta" id="oferta">
-  <div class="wrap centro">
-    <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#bbf7d0">Oferta</span>
-    <h2>Leve a planilha completa hoje</h2>
-    <p class="lead">Um pagamento, sem mensalidade. Use todos os meses, com até 10 funcionários.</p>
+  <div class="wrap">
+    <div class="cab">
+      <span class="eyebrow">Oferta</span>
+      <h2>Leve a planilha completa hoje</h2>
+      <p class="lead">Um pagamento, sem mensalidade. Use todos os meses, com até 10 funcionários.</p>
+    </div>
 
     <div class="preco-card">
       <div class="selo-promo">Sem mensalidade</div>
@@ -503,9 +817,9 @@ footer strong{color:#fff}
 </section>
 
 <!-- FAQ -->
-<section class="sec cinza" id="faq">
+<section class="sec" id="faq">
   <div class="wrap">
-    <div class="centro">
+    <div class="cab">
       <span class="eyebrow">Dúvidas</span>
       <h2>Perguntas frequentes</h2>
     </div>
@@ -519,7 +833,7 @@ footer strong{color:#fff}
       <details><summary>A planilha substitui o relógio de ponto ou o contador?</summary><p>Não. Ela faz as contas a partir dos horários que você já registra. Não é registro de ponto homologado e não calcula rescisão nem DSR sobre horas extras. Use os valores para conferir e envie ao seu contador.</p></details>
       <details><summary>Tem mensalidade?</summary><p>Não. Você paga R$ 49,90 uma vez e usa o arquivo todos os meses.</p></details>
     </div>
-    <div class="centro" style="margin-top:36px">
+    <div class="faq-cta">
       <a class="btn grande js-checkout" href="https://pay.hotmart.com/K108418846B">Quero a planilha por R$ 49,90</a>
     </div>
   </div>
@@ -529,12 +843,31 @@ footer strong{color:#fff}
 
 <footer>
   <div class="wrap">
-    <p><strong>Calcula Ponto</strong>, planilha para cálculo de jornada e fechamento de folha.</p>
-    <p>A compra é processada e entregue pela Hotmart. Dúvidas depois da compra: use o contato com o produtor na sua área de compras da Hotmart.</p>
-    <p>Ferramenta de apoio: não é sistema de registro de ponto homologado e não substitui a orientação de contador ou advogado trabalhista.</p>
-    <p>Este site usa o Pixel da Meta para medir os resultados dos anúncios (visitas e cliques nos botões de compra). Ele não coleta nome, e-mail nem dados de pagamento; esses ficam só na Hotmart. Você pode limitar isso nas configurações de anúncios do Facebook e do Instagram.</p>
-    <p>Microsoft e Excel são marcas registradas da Microsoft Corporation. Este produto não é afiliado nem endossado pela Microsoft.</p>
-    <p>© <span id="ano">2026</span> Calcula Ponto. Todos os direitos reservados.</p>
+    <div class="rodape">
+      <div>
+        <div class="marca-rod"><svg width="34" height="34" aria-hidden="true"><use href="#cpIcone"/></svg><span class="nome-marca">Calcula <b>Ponto</b></span></div>
+        <p>Planilha para cálculo de jornada e fechamento de folha.</p>
+      </div>
+      <div>
+        <h4>Na página</h4>
+        <ul>
+          <li><a href="#como">Como funciona</a></li>
+          <li><a href="#teste">Teste o cálculo</a></li>
+          <li><a href="#oferta">Preço</a></li>
+          <li><a href="#faq">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Compra e suporte</h4>
+        <p>A compra é processada e entregue pela Hotmart. Dúvidas depois da compra: use o contato com o produtor na sua área de compras da Hotmart.</p>
+        <p>Ferramenta de apoio: não é sistema de registro de ponto homologado e não substitui a orientação de contador ou advogado trabalhista.</p>
+      </div>
+    </div>
+    <div class="legal">
+      <p>Este site usa o Pixel da Meta para medir os resultados dos anúncios (visitas e cliques nos botões de compra). Ele não coleta nome, e-mail nem dados de pagamento; esses ficam só na Hotmart. Você pode limitar isso nas configurações de anúncios do Facebook e do Instagram.</p>
+      <p>Microsoft e Excel são marcas registradas da Microsoft Corporation. Este produto não é afiliado nem endossado pela Microsoft.</p>
+      <p>© <span id="ano">2026</span> Calcula Ponto. Todos os direitos reservados.</p>
+    </div>
   </div>
 </footer>
 
@@ -680,6 +1013,18 @@ footer strong{color:#fff}
     });
   });
   calcular();
+
+  /* Exemplo escolhido fica marcado; mexer num campo desmarca */
+  var exemplos = document.querySelectorAll('[data-ex]');
+  exemplos.forEach(function(b){
+    b.addEventListener('click', function(){
+      exemplos.forEach(function(x){ x.classList.remove('ativo'); });
+      b.classList.add('ativo');
+    });
+  });
+  ['e1','s1','e2','s2','tipo','semana'].forEach(function(id){
+    $(id).addEventListener('input', function(){ exemplos.forEach(function(x){ x.classList.remove('ativo'); }); });
+  });
 
   /* ---------- Medição (Pixel da Meta) ---------- */
   function medir(tipo, evento, dados){
